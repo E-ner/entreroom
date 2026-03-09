@@ -4,5 +4,6 @@ export default function App() {
   useEffect(() => {
     document.title = "Hellow";
   });
-  return <>Hello mr </>;
+
+  return <>Hello world</>;
 }
