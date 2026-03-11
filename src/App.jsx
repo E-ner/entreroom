@@ -1,30 +1,26 @@
-import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
-import { app, db } from "./firebase";
+import Sidebar from "./components/sidebar";
+import Chat from "./pages/chat";
+// import HomePage from "./pages/HomePage";
+// import Profile from "./Profile";
 
-import { collection, addDoc } from "firebase/firestore";
 export default function App() {
-  const collections = collection(db, "work");
-
-  addDoc(collections, {
-    work: "Neric",
-  })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-  useEffect(() => {
+   useEffect(() => {
     document.title = "EntreRoom";
   });
 
-  return(
-<>
-<Sidebar/>
-{/* <Chat/> */}
-
-</>
-
-  )
+  return (
+    <Router>
+      <Sidebar />
+      <div className="ml-24 md:ml-24">
+        <Routes>
+          {/* <Route path="/" element={<HomePage />} /> */}
+          <Route path="/chat" element={<Chat />} />
+          {/* <Route path="/profile" element={<Profile />} /> */}
+      
+        </Routes>
+      </div>
+    </Router>
+  );
 }
