@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore/lite";
-import { getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth/web-extension";
+import { getFirestore } from "firebase/firestore";
+import { getMessaging } from "firebase/messaging/sw";
+
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTHDOMAIN,
@@ -9,6 +11,8 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APPID,
 };
-const app = initializeApp(firebaseConfig);
+
+export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+export const messaging = getMessaging(app);
