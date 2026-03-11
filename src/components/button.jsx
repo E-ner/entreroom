@@ -3,8 +3,7 @@ const variants = {
   secondary: 'btn btn-secondary',
   ghost: 'btn btn-ghost',
 }
-
-export default function Button({
+  function Button({
   children,
   href,
   variant = 'primary',
@@ -24,3 +23,5 @@ export default function Button({
     </Component>
   )
 }
+
+export default Button;

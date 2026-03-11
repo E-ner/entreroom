@@ -1,26 +1,35 @@
 import { Link } from "react-router-dom";
-import { Home, Search, ArrowBigDownDash, PersonStanding, ArrowBigLeftDash, Send } from "lucide-react";
+import React from "react";
+import { Home, Search, Bell, User, LogOut, Send } from "lucide-react";
 
 const Sidebar = () => {
   const items = [
-    { icon: <Home />, label: "Home", path: "/" },
-    { icon: <Search />, label: "Search", path: "/search" },
-    { icon: <ArrowBigDownDash />, label: "Notifications", path: "/notifications" },
-    { icon: <Send />, label: "Message", path: "./pages/chat.jsx" },
-    { icon: <PersonStanding />, label: "Profile", path: "/profile" },
-    { icon: <ArrowBigLeftDash />, label: "Logout", path: "/logout" },
+    { icon: <Home size={26} />, label: "Home", path: "/" },
+    { icon: <Search size={26} />, label: "Search", path: "/search" },
+    { icon: <Bell size={26} />, label: "Notifications", path: "/notifications" },
+    { icon: <Send size={26} />, label: "Message", path: "/chat" },
+    { icon: <User size={26} />, label: "Profile", path: "/profile" },
+    { icon: <LogOut size={26} />, label: "Logout", path: "/logout" },
   ];
 
   return (
     <div>
       {/* Desktop sidebar */}
-      <nav className="bg-orange-700/90 h-screen w-24 hover:w-60 transition-all duration-300 overflow-hidden fixed top-0 left-0 hidden md:flex flex-col group">
-        <ul className="flex flex-col py-20 space-y-10">
+      <nav className="fixed bg-[#1f1c17] h-screen w-20 hover:w-64 transition-all duration-300 ease-in-out overflow-hidden top-0 left-0 hidden md:flex flex-col group border-r border-orange-800 z-50">
+        <ul className="flex flex-col mt-10 space-y-4">
           {items.map((item, idx) => (
-            <li key={idx} className="flex items-center space-x-4 px-6 cursor-pointer">
-              <Link to={item.path} className="flex items-center space-x-4 w-full">
-                <div className="text-white">{item.icon}</div>
-                <span className="text-white opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap">
+            <li key={idx} className="px-3">
+              <Link 
+                to={item.path} 
+                className="flex items-center h-12 px-3 rounded-lg hover:bg-orange-600/50 transition-colors duration-200"
+              >
+                {/* Icon Container: Fixed width ensures icon doesn't move */}
+                <div className="text-white min-w-[40px] flex justify-center items-center">
+                  {item.icon}
+                </div>
+                
+                {/* Text: Hidden by default, slides in on group-hover */}
+                <span className="text-white text-md font-medium ml-4 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 whitespace-nowrap overflow-hidden">
                   {item.label}
                 </span>
               </Link>
@@ -30,11 +39,11 @@ const Sidebar = () => {
       </nav>
 
       {/* Mobile bottom bar */}
-      <nav className="bg-orange-700/90 w-full fixed bottom-0 left-0 flex md:hidden justify-around py-2">
+      <nav className="bg-[#e7d7c4]w-full fixed bottom-0 left-0 flex md:hidden justify-around py-3 border-t border-orange-800 z-50">
         {items.map((item, idx) => (
-          <Link key={idx} to={item.path} className="flex flex-col items-center text-white">
-            {item.icon}
-            <span className="text-xs">{item.label}</span>
+          <Link key={idx} to={item.path} className="flex flex-col items-center text-white opacity-80 hover:opacity-100">
+            {React.cloneElement(item.icon, { size: 22 })}
+            <span className="text-[10px] mt-1">{item.label}</span>
           </Link>
         ))}
       </nav>
