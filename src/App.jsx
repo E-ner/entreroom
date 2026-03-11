@@ -1,9 +1,19 @@
+import React from "react";
 import { useEffect } from "react";
+import Sidebar from "./components/sidebar";
+// import Chat from "./pages/chat"
 
 export default function App() {
   useEffect(() => {
-    document.title = "Hellow";
+    document.title = "EntreRoom";
   });
 
-  return <>Hello world</>;
+  return(
+<>
+<Sidebar/>
+{/* <Chat/> */}
+
+</>
+
+  )
 }
