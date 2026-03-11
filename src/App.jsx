@@ -1,10 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
-import Sidebar from "./components/sidebar";
-import Chat from "./pages/chat";
-// import HomePage from "./pages/HomePage";
-// import Profile from "./Profile";
-
+import "./App.css";
+import LandingPage from "./pages/LandingPage";
 export default function App() {
    useEffect(() => {
     document.title = "EntreRoom";
@@ -23,4 +20,6 @@ export default function App() {
       </div>
     </Router>
   );
+}
+  return <LandingPage />;
 }
